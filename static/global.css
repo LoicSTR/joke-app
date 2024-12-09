@@ -1,0 +1,135 @@
+@font-face {
+	font-family: 'Advent Pro';
+	src: url('/fonts/AventPro-Regular.ttf');
+}
+
+html,
+body {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+* {
+	box-sizing: border-box;
+	font-family: 'Advent Pro', sans-serif;
+}
+
+body {
+	display: flex;
+	flex-flow: column;
+	place-content: center;
+	color: #fff;
+	background-color: #080808;
+	margin: 0;
+	line-height: 1.5;
+	box-sizing: border-box;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu,
+		Cantarell, 'Helvetica Neue', sans-serif;
+}
+
+body > div {
+	width: 100%;
+}
+body > div > p {
+	text-align: center;
+}
+
+main {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	overflow: auto;
+	flex: 1;
+	align-content: center;
+	align-items: center;
+	padding: 1rem;
+}
+
+h1 {
+	margin: 0;
+	text-align: center;
+}
+
+footer {
+	display: flex;
+	place-content: center;
+	font-size: 0.8rem;
+}
+
+a {
+	color: #13293d;
+	text-decoration: none;
+}
+
+a:hover,
+a:focus-visible {
+	outline: none;
+	text-decoration: underline;
+}
+
+ul {
+	all: unset;
+	list-style: none;
+}
+
+label {
+	display: block;
+}
+
+input,
+button,
+select,
+textarea {
+	font-family: inherit;
+	font-size: inherit;
+	-webkit-padding: 0.4em 0;
+	padding: 0.4em;
+	margin: 0 0 0.5em 0;
+	box-sizing: border-box;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+	margin: 0;
+}
+
+input {
+	padding: 0 0.5rem;
+	padding-top: 0.3rem;
+	line-height: 1.7;
+}
+
+input:disabled {
+	color: #ccc;
+}
+
+input::placeholder {
+	overflow: visible;
+	opacity: 0.5;
+}
+
+button {
+	outline: none;
+	background-color: transparent;
+	border: none;
+	border-radius: 0;
+	cursor: pointer;
+}
+
+button:disabled {
+	color: #999;
+}
+
+button:not(:disabled):active {
+	background-color: #ddd;
+}
+
+button:focus,
+button:hover {
+	color: white;
+}
+
+#app {
+	display: flex;
+	height: 100vh;
+	flex-flow: column;
+}
