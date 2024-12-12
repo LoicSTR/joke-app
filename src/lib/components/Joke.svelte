@@ -4,18 +4,79 @@
 		joke: string;
 		answer: string;
 		type: string;
+		nbLikes: number;
 	};
-	const { id, joke, answer, type }: JokeProps = $props();
+	const { id, joke, answer, type, nbLikes }: JokeProps = $props();
+	import like from '$lib/assets/like.svg';
+	import eye from '$lib/assets/eye.svg';
 </script>
 
 <div class="joke {type}">
-	<h2>{joke}</h2>
-	<p class="answer">{answer}</p>
+	<p class="joke__text">{joke}</p>
+	<div class="answer__container">
+		<div class="answer__eye">
+			<img src={eye} alt="oeil" />
+		</div>
+		<div class="answer__glass"></div>
+		<p class="answer__text">{answer}</p>
+	</div>
+	<div class="like">
+		<img src={like} alt="coeur" />
+		<p>{nbLikes}</p>
+	</div>
 	<div class="blur"></div>
 	<div class="blur-2"></div>
 </div>
 
 <style>
+	.answer__container {
+		position: relative;
+	}
+	.answer__glass,
+	.answer__eye {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+	.answer__glass {
+		background: rgba(255, 255, 255, 0.06);
+		border-radius: 16px;
+		box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
+		opacity: 1;
+		transition: all 0.2s ease-in-out;
+		z-index: 20;
+	}
+	.answer__eye {
+		z-index: 30;
+		padding: 0.5rem;
+		opacity: 1;
+		transition: all 0.2s ease-in-out;
+	}
+	.answer__eye img {
+		height: 100%;
+		width: 100%;
+		object-fit: contain;
+	}
+	.answer__container:hover .answer__glass {
+		opacity: 0;
+	}
+	.answer__container:hover .answer__eye {
+		opacity: 0;
+	}
+	.answer__text {
+		font-size: 1.25rem;
+		position: relative;
+		z-index: 1;
+		padding: 0.25rem 1rem;
+	}
+	.joke__text {
+		font-size: 1.5rem;
+		font-weight: 700;
+	}
 	.joke {
 		position: relative;
 		width: 40rem;
@@ -145,5 +206,20 @@
 	.joke.global .blur,
 	.joke.global .blur-2 {
 		background: radial-gradient(#46dac3, #000000);
+	}
+
+	.like {
+		position: absolute;
+		bottom: 2rem;
+		right: 3rem;
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+	}
+
+	.like img {
+		width: 2rem;
+		height: 2rem;
+		padding: 0.25rem;
 	}
 </style>

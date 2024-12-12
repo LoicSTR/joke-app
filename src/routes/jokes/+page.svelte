@@ -1,18 +1,18 @@
 <script lang="ts">
 	const { data } = $props();
 	import Joke from '$lib/components/Joke.svelte';
-	import down from '$lib/assets/down.svg';
+	// import down from '$lib/assets/down.svg';
 	const joke = data.blague;
+	let nbLikes = $state<number>(0);
+	function addLikeToJoke() {
+		nbLikes += 1;
+	}
 </script>
 
-<!-- <h1>Jokes</h1> -->
 <section>
-	<div class="bad">
-		<!-- <div class="halo"></div> -->
+	<button class="bad">
 		<svg
-			width="775"
-			height="744"
-			viewBox="0 0 775 744"
+			viewBox="0 0 775 775"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
 			style="overflow: visible;"
@@ -37,14 +37,12 @@
 				filter="url(#svg-shadow-bad)"
 			/>
 		</svg>
-	</div>
-	<Joke id={joke.id} joke={joke.joke} answer={joke.answer} type={joke.type} />
-	<div class="good">
+	</button>
+	<Joke id={joke.id} joke={joke.joke} answer={joke.answer} type={joke.type} {nbLikes} />
+	<button class="good" onclick={addLikeToJoke}>
 		<!-- <div class="halo"></div> -->
 		<svg
-			width="775"
-			height="744"
-			viewBox="0 0 775 744"
+			viewBox="0 0 775 775"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
 			style="overflow: visible;"
@@ -69,20 +67,21 @@
 				filter="url(#svg-shadow-good)"
 			/>
 		</svg>
-	</div>
+	</button>
 </section>
 
 <style>
 	section {
 		display: flex;
 		align-items: center;
-		/* justify-content: space-around; */
 		gap: 5rem;
 		margin-top: 5rem;
 	}
 	.good,
 	.bad {
-		padding: 1rem;
+		width: 120px;
+		height: 120px;
+		padding: 1.5rem;
 		border-radius: 50%;
 		color: #fff;
 		border: 0.2rem solid #fff;
@@ -134,9 +133,9 @@
 	}
 	.good svg,
 	.bad svg {
-		width: 5rem;
+		/* width: 5rem;
 		height: 5rem;
-		padding: 0.5rem;
+		padding: 0.5rem; */
 		stroke-width: 0.3rem;
 	}
 	.good svg {

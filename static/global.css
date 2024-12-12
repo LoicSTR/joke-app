@@ -1,6 +1,6 @@
 @font-face {
 	font-family: 'Advent Pro';
-	src: url('/fonts/AventPro-Regular.ttf');
+	src: url('/fonts/AdventPro-Regular.ttf');
 }
 
 html,
@@ -36,6 +36,7 @@ body > div > p {
 }
 
 main {
+	margin-top: 5rem;
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -58,7 +59,6 @@ footer {
 }
 
 a {
-	color: #13293d;
 	text-decoration: none;
 }
 
