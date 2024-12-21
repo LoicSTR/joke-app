@@ -63,9 +63,6 @@
 		padding: 0.5rem;
 	}
 
-	nav a:hover {
-	}
-
 	nav a.current {
 		text-decoration: none;
 	}
