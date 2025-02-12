@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { collection } from '$lib/collection.svelte.js';
 	import { page } from '$app/stores';
 	const { children, data } = $props();
 	const current = $derived($page.url.pathname);
@@ -10,18 +11,16 @@
 	<nav>
 		<ul>
 			<li>
+				<a href="/statistiques" class:current={current === '/statistiques'}>Statistiques </a>
+			</li>
+			<li>
 				<a href="/" class:current={current === '/'}>
-					<img src={house} alt="house" />
+					<img src={house} alt="maison" />
 				</a>
 			</li>
 			<li>
-				<a href="/jokes" class:current={current === '/jokes'}>
-					<img src={smiley} alt="smiley" />
-				</a>
-			</li>
-			<li>
-				<a href="/profil" class:current={current === '/profil'}
-					>Collection ({data.collectionSize})</a
+				<a href="/collection" class:current={current === '/collection'}
+					>Collection ({collection.ids.length})</a
 				>
 			</li>
 		</ul>

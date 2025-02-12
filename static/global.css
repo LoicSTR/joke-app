@@ -1,6 +1,71 @@
 @font-face {
-	font-family: 'Advent Pro';
-	src: url('/fonts/AdventPro-Regular.ttf');
+	font-family: 'Chewy';
+	src: url('/static/fonts/Chewy-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Lexend';
+	src: url('/fonts/Lexend-Black.ttf') format('truetype');
+	font-weight: 900;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Lexend';
+	src: url('/fonts/Lexend-Bold.ttf') format('truetype');
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Lexend';
+	src: url('/fonts/Lexend-ExtraBold.ttf') format('truetype');
+	font-weight: 800;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Lexend';
+	src: url('/fonts/Lexend-ExtraLight.ttf') format('truetype');
+	font-weight: 200;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Lexend';
+	src: url('/fonts/Lexend-Light.ttf') format('truetype');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Lexend';
+	src: url('/fonts/Lexend-Medium.ttf') format('truetype');
+	font-weight: 500;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Lexend';
+	src: url('/fonts/Lexend-Regular.ttf') format('truetype');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Lexend';
+	src: url('/fonts/Lexend-SemiBold.ttf') format('truetype');
+	font-weight: 600;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Lexend';
+	src: url('/fonts/Lexend-Thin.ttf') format('truetype');
+	font-weight: 100;
+	font-style: normal;
 }
 
 html,
@@ -12,7 +77,8 @@ body {
 
 * {
 	box-sizing: border-box;
-	font-family: 'Advent Pro', sans-serif;
+	font-family: 'Lexend';
+	font-weight: 400;
 }
 
 body {
@@ -48,7 +114,11 @@ main {
 }
 
 h1 {
+	font-family: 'Lexend';
+	font-weight: 800;
 	margin: 0;
+	margin-top: 3rem;
+	margin-bottom: 2rem;
 	text-align: center;
 }
 

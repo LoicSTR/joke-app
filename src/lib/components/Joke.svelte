@@ -1,34 +1,49 @@
 <script lang="ts">
 	type JokeProps = {
-		id: number;
-		joke: string;
-		answer: string;
-		type: string;
-		nbLikes: number;
+		currentJoke: {
+			id: number;
+			joke: string;
+			answer: string;
+			type: string;
+		};
+		addToCollection: (id: number) => void;
+		reloadJoke: () => void;
 	};
-	const { id, joke, answer, type, nbLikes }: JokeProps = $props();
+	const { currentJoke, addToCollection, reloadJoke }: JokeProps = $props();
+
 	import like from '$lib/assets/like.svg';
 	import eye from '$lib/assets/eye.svg';
+	import ButtonBad from './ButtonBad.svelte';
+	import ButtonGood from './ButtonGood.svelte';
 </script>
 
-<div class="joke {type}">
-	<p class="joke__text">{joke}</p>
-	<div class="answer__container">
-		<div class="answer__eye">
-			<img src={eye} alt="oeil" />
+<section>
+	<ButtonBad {reloadJoke} />
+	<div class="joke {currentJoke.type}">
+		<p class="joke__text">{currentJoke.joke}</p>
+		<div class="answer__container">
+			<div class="answer__eye">
+				<img src={eye} alt="oeil" />
+			</div>
+			<div class="answer__glass"></div>
+			<p class="answer__text">{currentJoke.answer}</p>
 		</div>
-		<div class="answer__glass"></div>
-		<p class="answer__text">{answer}</p>
+		<div class="like">
+			<img src={like} alt="coeur" />
+		</div>
+		<div class="blur"></div>
+		<div class="blur-2"></div>
 	</div>
-	<div class="like">
-		<img src={like} alt="coeur" />
-		<p>{nbLikes}</p>
-	</div>
-	<div class="blur"></div>
-	<div class="blur-2"></div>
-</div>
+	<ButtonGood addToCollection={() => addToCollection(currentJoke.id)} {reloadJoke} />
+</section>
 
 <style>
+	section {
+		display: flex;
+		align-items: center;
+		gap: 5rem;
+		margin-top: 5rem;
+	}
 	.answer__container {
 		position: relative;
 	}
@@ -57,6 +72,7 @@
 		transition: all 0.2s ease-in-out;
 	}
 	.answer__eye img {
+		max-width: 3rem;
 		height: 100%;
 		width: 100%;
 		object-fit: contain;

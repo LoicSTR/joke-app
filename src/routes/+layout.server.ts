@@ -1,3 +1,1 @@
-export function load() {
-	return { collectionSize: 3 };
-}
+export function load() {}
