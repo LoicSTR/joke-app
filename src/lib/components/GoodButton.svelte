@@ -1,9 +1,9 @@
 <script lang="ts">
-	type ButtonGoodProps = {
+	type GoodButtonProps = {
 		addToCollection: () => void;
 		reloadJoke: () => void;
 	};
-	const { addToCollection, reloadJoke }: ButtonGoodProps = $props();
+	const { addToCollection, reloadJoke }: GoodButtonProps = $props();
 </script>
 
 <button

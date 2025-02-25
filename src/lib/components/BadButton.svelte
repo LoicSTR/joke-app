@@ -1,8 +1,8 @@
 <script lang="ts">
-	type ButtonGoodProps = {
+	type GoodButtonProps = {
 		reloadJoke: () => void;
 	};
-	const { reloadJoke }: ButtonGoodProps = $props();
+	const { reloadJoke }: GoodButtonProps = $props();
 </script>
 
 <button on:click={reloadJoke} class="bad" aria-label="Don't like this joke">

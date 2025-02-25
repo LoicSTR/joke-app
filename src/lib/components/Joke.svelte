@@ -5,6 +5,7 @@
 			joke: string;
 			answer: string;
 			type: string;
+			likes: number;
 		};
 		addToCollection: (id: number) => void;
 		reloadJoke: () => void;
@@ -13,12 +14,12 @@
 
 	import like from '$lib/assets/like.svg';
 	import eye from '$lib/assets/eye.svg';
-	import ButtonBad from './ButtonBad.svelte';
-	import ButtonGood from './ButtonGood.svelte';
+	import BadButton from './BadButton.svelte';
+	import GoodButton from './GoodButton.svelte';
 </script>
 
 <section>
-	<ButtonBad {reloadJoke} />
+	<BadButton {reloadJoke} />
 	<div class="joke {currentJoke.type}">
 		<p class="joke__text">{currentJoke.joke}</p>
 		<div class="answer__container">
@@ -30,11 +31,12 @@
 		</div>
 		<div class="like">
 			<img src={like} alt="coeur" />
+			<span>{currentJoke.likes}</span>
 		</div>
 		<div class="blur"></div>
 		<div class="blur-2"></div>
 	</div>
-	<ButtonGood addToCollection={() => addToCollection(currentJoke.id)} {reloadJoke} />
+	<GoodButton addToCollection={() => addToCollection(currentJoke.id)} {reloadJoke} />
 </section>
 
 <style>
