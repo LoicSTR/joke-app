@@ -31,9 +31,10 @@
 	function reloadJoke() {
 		currentJoke = getRandomJoke();
 	}
+	let formIsActive = $state(false);
 
 	function addJoke() {
-		alert('ajouter une blague');
+		formIsActive = true;
 	}
 
 	async function addToCollection(id: number) {
@@ -54,10 +55,40 @@
 <section>
 	<Button text="Ajouter une blague" action={addJoke}></Button>
 </section>
+{#if formIsActive}
+	<section class="form-container">
+		<form action="">
+			<label>
+				Intitulé de la blague
+				<input type="text" name="joke" />
+			</label>
+			<label>
+				Réponse de la blague
+				<input type="text" name="answer" />
+			</label>
+			<label>
+				Type de la blague
+				<select name="type">
+					<option value="global">Basique</option>
+					<option value="dev">Geek</option>
+					<option value="dark">Sombre</option>
+				</select>
+			</label>
+		</form>
+	</section>
+{/if}
 
 <style>
 	.types-container {
 		display: flex;
 		gap: 2rem;
+	}
+
+	.form-container {
+		display: none;
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(50%, 50%);
 	}
 </style>
