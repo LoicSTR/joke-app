@@ -1,8 +1,10 @@
 <script lang="ts">
+	import Button from '$lib/components/Button.svelte';
 	import Joke from '$lib/components/Joke.svelte';
 	import TypeToggleButton from '$lib/components/TypeToggleButton.svelte';
 	import { collection } from '$lib/collection.svelte';
 	import { createRandomNumber } from '$lib/helpers';
+	import { invalidate } from '$app/navigation';
 
 	const { data } = $props();
 
@@ -11,10 +13,6 @@
 	let activeTypes = $state(
 		Object.fromEntries(typesUnique.map((type) => [type, type === 'global' || type === 'dev']))
 	);
-
-	// function isTypeActive(type: string): boolean {
-	// 	return activeTypes[type] === true;
-	// }
 
 	function getFilteredJokes() {
 		return data.jokes.filter((joke) => activeTypes[joke.type]);
@@ -33,6 +31,16 @@
 	function reloadJoke() {
 		currentJoke = getRandomJoke();
 	}
+
+	function addJoke() {
+		alert('ajouter une blague');
+	}
+
+	async function addToCollection(id: number) {
+		await fetch('/api/collection', { method: 'POST', body: JSON.stringify({ id }) });
+		invalidate('collection:all');
+		collection.add(id);
+	}
 </script>
 
 <section class="types-container">
@@ -41,7 +49,10 @@
 	{/each}
 </section>
 <section>
-	<Joke {currentJoke} addToCollection={collection.addToCollection} {reloadJoke} />
+	<Joke {currentJoke} {addToCollection} {reloadJoke} />
+</section>
+<section>
+	<Button text="Ajouter une blague" action={addJoke}></Button>
 </section>
 
 <style>

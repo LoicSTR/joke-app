@@ -1,4 +1,4 @@
-import jokes from '$lib/api/jokes.json';
+import jokes from '../../data/jokes.json';
 
 export function load() {
 	return { jokes };

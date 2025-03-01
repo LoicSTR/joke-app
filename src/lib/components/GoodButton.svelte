@@ -7,7 +7,7 @@
 </script>
 
 <button
-	on:click={() => {
+	onclick={() => {
 		addToCollection();
 		reloadJoke();
 	}}
@@ -50,8 +50,6 @@
 		border-radius: 50%;
 		color: #fff;
 		border: 0.2rem solid #fff;
-	}
-	.good {
 		position: relative;
 		overflow: hidden;
 		box-shadow:
@@ -83,7 +81,7 @@
 	.good svg {
 		rotate: 180deg;
 	}
-	.good .halo {
+	/* .good .halo {
 		position: fixed;
 		bottom: -160px;
 		right: -200px;
@@ -99,5 +97,5 @@
 	.good:hover .halo {
 		width: 600px;
 		height: 600px;
-	}
+	} */
 </style>

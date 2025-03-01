@@ -6,7 +6,7 @@
 			answer: string;
 			type: string;
 			likes: number;
-		};
+		} | null;
 		addToCollection: (id: number) => void;
 		reloadJoke: () => void;
 	};
@@ -19,24 +19,26 @@
 </script>
 
 <section>
-	<BadButton {reloadJoke} />
-	<div class="joke {currentJoke.type}">
-		<p class="joke__text">{currentJoke.joke}</p>
-		<div class="answer__container">
-			<div class="answer__eye">
-				<img src={eye} alt="oeil" />
+	{#if currentJoke}
+		<BadButton {reloadJoke} />
+		<div class="joke {currentJoke.type}">
+			<p class="joke__text">{currentJoke.joke}</p>
+			<div class="answer__container">
+				<div class="answer__eye">
+					<img src={eye} alt="oeil" />
+				</div>
+				<div class="answer__glass"></div>
+				<p class="answer__text">{currentJoke.answer}</p>
 			</div>
-			<div class="answer__glass"></div>
-			<p class="answer__text">{currentJoke.answer}</p>
+			<div class="like">
+				<img src={like} alt="coeur" />
+				<span>{currentJoke.likes}</span>
+			</div>
+			<div class="blur"></div>
+			<div class="blur-2"></div>
 		</div>
-		<div class="like">
-			<img src={like} alt="coeur" />
-			<span>{currentJoke.likes}</span>
-		</div>
-		<div class="blur"></div>
-		<div class="blur-2"></div>
-	</div>
-	<GoodButton addToCollection={() => addToCollection(currentJoke.id)} {reloadJoke} />
+		<GoodButton addToCollection={() => addToCollection(currentJoke.id)} {reloadJoke} />
+	{/if}
 </section>
 
 <style>

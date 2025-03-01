@@ -1,22 +1,25 @@
-import fs from 'fs';
+import { writeFile } from 'fs/promises';
+import dotenv from 'dotenv';
+dotenv.config();
 import BlaguesAPI from 'blagues-api';
 
-const AccessToken = import.meta.env.VITE_ACCESS_TOKEN;
+const AccessToken = process.env.ACCESS_TOKEN;
 const blagues = new BlaguesAPI(AccessToken);
 
-async function generateJokes() {
+export async function generateJokes() {
 	try {
 		const jokes = [];
-		for (let i = 0; i < 100; i++) {
+
+		while (jokes.length < 250) {
 			const joke = await blagues.random();
+			if (['limit', 'blondes', 'beauf'].includes(joke.type)) continue;
 			if (!jokes.some((j) => j.id === joke.id)) {
 				jokes.push(joke);
 			}
 		}
-		fs.writeFileSync('./jokes.json', JSON.stringify(jokes, null, 2));
+		return writeFile('data/jokes.json', JSON.stringify(jokes, null, 2));
 	} catch (e) {
 		console.error(e);
 	}
 }
-
 generateJokes();

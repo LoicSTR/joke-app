@@ -5,7 +5,7 @@
 	const { reloadJoke }: GoodButtonProps = $props();
 </script>
 
-<button on:click={reloadJoke} class="bad" aria-label="Don't like this joke">
+<button onclick={reloadJoke} class="bad" aria-label="Don't like this joke">
 	<svg
 		viewBox="0 0 775 775"
 		fill="none"
@@ -42,8 +42,6 @@
 		border-radius: 50%;
 		color: #fff;
 		border: 0.2rem solid #fff;
-	}
-	.bad {
 		position: relative;
 		box-shadow:
 			0 0 4px #fff,
@@ -68,7 +66,7 @@
 	.bad svg {
 		stroke-width: 0.3rem;
 	}
-	.bad:hover .halo {
+	/* .bad:hover .halo {
 		width: 600px;
 		height: 600px;
 	}
@@ -84,5 +82,5 @@
 		box-shadow: 0 0 30px rgba(223, 41, 53, 0.7);
 		filter: blur(100px);
 		pointer-events: none;
-	}
+	} */
 </style>

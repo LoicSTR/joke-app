@@ -1,10 +1,8 @@
 <script lang="ts">
-	import { collection } from '$lib/collection.svelte.js';
 	import { page } from '$app/stores';
+	import house from '$lib/assets/house.svg';
 	const { children, data } = $props();
 	const current = $derived($page.url.pathname);
-	import house from '$lib/assets/house.svg';
-	import smiley from '$lib/assets/smiley.svg';
 </script>
 
 <header>
@@ -20,7 +18,7 @@
 			</li>
 			<li>
 				<a href="/collection" class:current={current === '/collection'}
-					>Collection ({collection.ids.length})</a
+					>Collection ({data.uniqueJokes.length})</a
 				>
 			</li>
 		</ul>
@@ -64,29 +62,5 @@
 
 	nav a.current {
 		text-decoration: none;
-	}
-
-	.good {
-		position: relative;
-		overflow: hidden;
-		box-shadow:
-			0 0 4px #fff,
-			inset 0 0 4px #fff,
-			0 0 8px #7ac74f,
-			inset 0 0 8px #7ac74f,
-			0 0 16px #7ac74f,
-			inset 0 0 16px #7ac74f;
-		transition: box-shadow 0.3s ease;
-	}
-	.good:hover {
-		scale: 1.1;
-		rotate: 10deg;
-		box-shadow:
-			0 0 8px #fff,
-			inset 0 0 8px #fff,
-			0 0 16px #7ac74f,
-			inset 0 0 16px #7ac74f,
-			0 0 32px #7ac74f,
-			inset 0 0 32px #7ac74f;
 	}
 </style>

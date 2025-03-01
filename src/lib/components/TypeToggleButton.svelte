@@ -1,13 +1,24 @@
 <script lang="ts">
+	// export type TypeName = 'dev' | 'blondes' | 'dark' | 'beauf' | 'limit' | 'global';
+
 	type TypeToggleButtonProps = {
 		isOn: boolean;
 		typeName: string;
 	};
 	let { isOn = $bindable(), typeName }: TypeToggleButtonProps = $props();
+
+	const typeDictionnary: Record<string, string> = {
+		dev: 'Geek',
+		blondes: 'Blondes',
+		dark: 'Sombre',
+		beauf: 'Beauf',
+		limit: 'Limite',
+		global: 'Basique'
+	};
 </script>
 
 <div class={typeName}>
-	<p>{typeName}</p>
+	<p>{typeDictionnary[typeName]}</p>
 	<label class="switch">
 		<input type="checkbox" bind:checked={isOn} />
 		<span class="slider"></span>
@@ -76,7 +87,31 @@
 
 	.global .slider {
 		border-color: #46dac3;
-		box-shadow: 0 0 8px #46dac3;
+		box-shadow: 0 0 16px #46dac3;
+	}
+
+	.dev:hover .slider {
+		box-shadow: 0 0 16px #0d6cba;
+	}
+
+	.blondes:hover .slider {
+		box-shadow: 0 0 16px #ffd700;
+	}
+
+	.dark:hover .slider {
+		box-shadow: 0 0 16px #fff;
+	}
+
+	.beauf:hover .slider {
+		box-shadow: 0 0 16px #ed852f;
+	}
+
+	.limit:hover .slider {
+		box-shadow: 0 0 16px #ef2b1d;
+	}
+
+	.global:hover .slider {
+		box-shadow: 0 0 16px #46dac3;
 	}
 
 	.slider::before {

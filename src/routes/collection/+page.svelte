@@ -1,35 +1,34 @@
 <script lang="ts">
-	import { collection } from '$lib/collection.svelte.js';
 	import like from '$lib/assets/like.svg';
+	import { collection } from '$lib/collection.svelte';
+	import { onMount } from 'svelte';
+
 	const { data } = $props();
 
 	const sortedCollection = data.jokes
-		.filter((joke) => collection.ids.includes(joke.id))
-		.sort((a, b) => (collection.likes[b.id] || 0) - (collection.likes[a.id] || 0))
-		.map((joke, index) => ({ ...joke, rank: index + 1 }));
-
-	let rank = 1;
-
-	function rankUp() {
-		rank++;
-	}
+		.filter((joke) => data.uniqueJokes.includes(joke.id))
+		.sort((a, b) => collection.getLikes(b.id) - collection.getLikes(a.id))
+		.map((joke, index) => ({ ...joke, likes: collection.getLikes(joke.id), rank: index + 1 }));
 </script>
 
 <h1>Ma collection</h1>
 
 <div class="container">
-	{#each sortedCollection as joke}
-		{@const nbLikes = collection.likes[joke.id]}
-		<div class="joke {joke.type}">
-			<div>#{joke.rank}</div>
-			<div><p>{joke.joke}</p></div>
-			<div><p>{joke.answer}</p></div>
-			<div class="like">
-				<p>{nbLikes}</p>
-				<img src={like} alt="coeur" />
+	{#if sortedCollection.length !== 0}
+		{#each sortedCollection as joke}
+			<div class="joke {joke.type}">
+				<div>#{joke.rank}</div>
+				<div><p>{joke.joke}</p></div>
+				<div><p>{joke.answer}</p></div>
+				<div class="like">
+					<p>{joke.likes}</p>
+					<img src={like} alt="coeur" />
+				</div>
 			</div>
-		</div>
-	{/each}
+		{/each}
+	{:else}
+		<p>Vous n'avez pas encore liké de blague</p>
+	{/if}
 </div>
 
 <style>
