@@ -2,8 +2,11 @@
 	import { page } from '$app/stores';
 	import house from '$lib/assets/house.svg';
 	const { children, data } = $props();
-	$inspect(data.user);
+	$inspect(data);
 	const current = $derived($page.url.pathname);
+
+	const nbInMyCollection =
+		data.uniqueJokes && data.uniqueJokes.length > 0 ? '(' + data.uniqueJokes.length + ')' : '';
 </script>
 
 <header>
@@ -22,7 +25,7 @@
 			</li>
 			<li>
 				<a href="/collection" class:current={current === '/collection'}
-					>Ma collection ({data.uniqueJokes.length})</a
+					>Ma collection {nbInMyCollection}</a
 				>
 			</li>
 		</ul>

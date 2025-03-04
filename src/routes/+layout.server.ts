@@ -12,8 +12,15 @@ export async function load({ depends, cookies }) {
 
 	const userByName = await readUsers();
 
-	const uniqueJokes = [...new Set(collection)];
+	let myCollection;
+	let uniqueJokes;
+	if (name) {
+		myCollection = collection[name];
+		uniqueJokes = [...new Set(myCollection)];
+	}
+
 	return {
+		myCollection,
 		uniqueJokes,
 		user: name ? userByName[name] : null
 	};
