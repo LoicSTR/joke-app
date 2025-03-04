@@ -2,11 +2,12 @@
 	import Button from '$lib/components/Button.svelte';
 	import Joke from '$lib/components/Joke.svelte';
 	import TypeToggleButton from '$lib/components/TypeToggleButton.svelte';
-	import { collection } from '$lib/collection.svelte';
-	import { createRandomNumber } from '$lib/helpers';
+	import { recentCollection } from '$lib/recentCollection.svelte.js';
+	import { createRandomNumber, getLikes } from '$lib/helpers';
 	import { invalidate } from '$app/navigation';
+	import { enhance } from '$app/forms';
 
-	const { data } = $props();
+	const { data, form } = $props();
 
 	const typesUnique = [...new Set(data.jokes.map((joke) => joke.type))];
 
@@ -23,7 +24,7 @@
 		if (filteredJokes.length === 0) return null;
 		const randomId = createRandomNumber(filteredJokes.length);
 		const joke = filteredJokes[randomId];
-		return { ...joke, likes: collection.getLikes(joke.id) };
+		return { ...joke, likes: getLikes(joke.id, data.collection) };
 	}
 
 	let currentJoke = $state(getRandomJoke());
@@ -31,50 +32,41 @@
 	function reloadJoke() {
 		currentJoke = getRandomJoke();
 	}
-	let formIsActive = $state(false);
-
-	function addJoke() {
-		formIsActive = true;
-	}
 
 	async function addToCollection(id: number) {
 		await fetch('/api/collection', { method: 'POST', body: JSON.stringify({ id }) });
 		invalidate('collection:all');
-		collection.add(id);
+		recentCollection.add(id);
 	}
 </script>
 
-<section class="types-container">
-	{#each typesUnique as type}
-		<TypeToggleButton bind:isOn={activeTypes[type]} typeName={type} />
-	{/each}
-</section>
-<section>
-	<Joke {currentJoke} {addToCollection} {reloadJoke} />
-</section>
-<section>
-	<Button text="Ajouter une blague" action={addJoke}></Button>
-</section>
-{#if formIsActive}
-	<section class="form-container">
-		<form action="">
-			<label>
-				Intitulé de la blague
-				<input type="text" name="joke" />
-			</label>
-			<label>
-				Réponse de la blague
-				<input type="text" name="answer" />
-			</label>
-			<label>
-				Type de la blague
-				<select name="type">
-					<option value="global">Basique</option>
-					<option value="dev">Geek</option>
-					<option value="dark">Sombre</option>
-				</select>
-			</label>
-		</form>
+{#if !data.user}
+	<h2>Connexion</h2>
+	<p>Pour accéder au contenu du site, veuillez-vous connecter</p>
+
+	<form action="?/login" method="POST" use:enhance>
+		<label class:error={form?.field === 'name_login'}>
+			Nom d'utilisateur
+			<input type="text" name="name_login" />
+		</label>
+		<label class:error={form?.field === 'password_login'}>
+			Mot de passe
+			<input type="password" name="password_login" />
+		</label>
+		<button>Se connecter</button>
+	</form>
+	<p>Si vous n'avez pas encore de compte, <a href="/sign-up">inscrivez-vous</a> !</p>
+{:else}
+	<section class="types-container">
+		{#each typesUnique as type}
+			<TypeToggleButton bind:isOn={activeTypes[type]} typeName={type} />
+		{/each}
+	</section>
+	<section>
+		<Joke {currentJoke} {addToCollection} {reloadJoke} />
+	</section>
+	<section>
+		<Button text="Ajouter une blague" link="/form"></Button>
 	</section>
 {/if}
 
@@ -82,13 +74,5 @@
 	.types-container {
 		display: flex;
 		gap: 2rem;
-	}
-
-	.form-container {
-		display: none;
-		position: fixed;
-		top: 50%;
-		left: 50%;
-		transform: translate(50%, 50%);
 	}
 </style>

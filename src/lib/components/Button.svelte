@@ -1,12 +1,21 @@
 <script lang="ts">
 	type ButtonProps = {
 		text: string;
-		action: () => void;
+		action?: () => void;
+		link?: string;
 	};
-	const { text, action }: ButtonProps = $props();
+	const { text, action, link }: ButtonProps = $props();
+
+	function handleClick() {
+		if (action) {
+			action();
+		} else if (link) {
+			window.location.href = link;
+		}
+	}
 </script>
 
-<button onclick={action}>
+<button onclick={handleClick}>
 	{text}
 </button>
 

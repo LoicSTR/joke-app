@@ -6,6 +6,7 @@
 			answer: string;
 			type: string;
 			likes: number;
+			author?: string;
 		} | null;
 		addToCollection: (id: number) => void;
 		reloadJoke: () => void;
@@ -30,9 +31,14 @@
 				<div class="answer__glass"></div>
 				<p class="answer__text">{currentJoke.answer}</p>
 			</div>
-			<div class="like">
-				<img src={like} alt="coeur" />
-				<span>{currentJoke.likes}</span>
+			<div class="bottom__container">
+				{#if currentJoke.author}
+					<div class="author__container">Proposé par {currentJoke.author}</div>
+				{/if}
+				<div class="like__container">
+					<img src={like} alt="coeur" />
+					<span>{currentJoke.likes}</span>
+				</div>
 			</div>
 			<div class="blur"></div>
 			<div class="blur-2"></div>
@@ -76,7 +82,7 @@
 		transition: all 0.2s ease-in-out;
 	}
 	.answer__eye img {
-		max-width: 3rem;
+		max-width: 2rem;
 		height: 100%;
 		width: 100%;
 		object-fit: contain;
@@ -153,36 +159,6 @@
 		background: radial-gradient(#280441, #000000);
 	}
 
-	.joke.beauf {
-		box-shadow:
-			0 0 8px #fff,
-			inset 0 0 8px #fff,
-			0 0 8px #ed852f,
-			inset 0 0 8px #ed852f,
-			0 0 16px #ed852f,
-			inset 0 0 16px #ed852f;
-	}
-
-	.joke.beauf .blur,
-	.joke.beauf .blur-2 {
-		background: radial-gradient(#ed852f, #000000);
-	}
-
-	.joke.blondes {
-		box-shadow:
-			0 0 8px #fff,
-			inset 0 0 8px #fff,
-			0 0 8px #ffd700,
-			inset 0 0 8px #ffd700,
-			0 0 16px #ffd700,
-			inset 0 0 16px #ffd700;
-	}
-
-	.joke.blondes .blur,
-	.joke.blondes .blur-2 {
-		background: radial-gradient(#ffd700, #000000);
-	}
-
 	.joke.dev {
 		box-shadow:
 			0 0 8px #fff,
@@ -196,21 +172,6 @@
 	.joke.dev .blur,
 	.joke.dev .blur-2 {
 		background: radial-gradient(#0d6cba, #000000);
-	}
-
-	.joke.limit {
-		box-shadow:
-			0 0 8px #fff,
-			inset 0 0 8px #fff,
-			0 0 8px #ef2b1d,
-			inset 0 0 8px #ef2b1d,
-			0 0 16px #ef2b1d,
-			inset 0 0 16px #ef2b1d;
-	}
-
-	.joke.limit .blur,
-	.joke.limit .blur-2 {
-		background: radial-gradient(#ef2b1d, #000000);
 	}
 
 	.joke.global {
@@ -228,16 +189,28 @@
 		background: radial-gradient(#46dac3, #000000);
 	}
 
-	.like {
+	.bottom__container {
 		position: absolute;
-		bottom: 2rem;
-		right: 3rem;
+		bottom: 0;
+		width: 100%;
+		padding: 2rem;
+		display: flex;
+		justify-content: end;
+	}
+
+	.author__container {
+		font-style: italic;
+		flex: 1;
+		text-align: start;
+	}
+
+	.like__container {
 		display: flex;
 		align-items: center;
 		gap: 0.25rem;
 	}
 
-	.like img {
+	.like__container img {
 		width: 2rem;
 		height: 2rem;
 		padding: 0.25rem;

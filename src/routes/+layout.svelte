@@ -2,6 +2,7 @@
 	import { page } from '$app/stores';
 	import house from '$lib/assets/house.svg';
 	const { children, data } = $props();
+	$inspect(data.user);
 	const current = $derived($page.url.pathname);
 </script>
 
@@ -9,35 +10,47 @@
 	<nav>
 		<ul>
 			<li>
-				<a href="/statistiques" class:current={current === '/statistiques'}>Statistiques </a>
-			</li>
-			<li>
 				<a href="/" class:current={current === '/'}>
 					<img src={house} alt="maison" />
 				</a>
 			</li>
 			<li>
+				<a href="/classement" class:current={current === '/classement'}>Classement</a>
+			</li>
+			<li>
+				<a href="/statistiques" class:current={current === '/statistiques'}>Statistiques </a>
+			</li>
+			<li>
 				<a href="/collection" class:current={current === '/collection'}
-					>Collection ({data.uniqueJokes.length})</a
+					>Ma collection ({data.uniqueJokes.length})</a
 				>
 			</li>
 		</ul>
 	</nav>
+	{#if data.user}
+		<div>
+			<p>-- {data.user.name}</p>
+		</div>
+	{/if}
 </header>
 <main>
 	{@render children()}
 </main>
+<footer>
+	<p>Présenté par Loïc Souêtre | ECV Bordeaux</p>
+</footer>
 
 <style>
 	header {
 		position: fixed;
-		top: 1rem;
+		top: 0;
 		left: 50%;
 		transform: translateX(-50%);
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		padding: 1rem;
+		padding: 0.5rem;
+		border-bottom: 1px solid #fff;
 	}
 
 	nav ul {
@@ -51,7 +64,6 @@
 		font-weight: 500;
 		color: #fff;
 		padding: 0.5rem 1rem;
-		transition: box-shadow 0.3s ease;
 	}
 
 	nav a img {

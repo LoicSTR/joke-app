@@ -3,8 +3,9 @@
 	import { getLikes } from '$lib/helpers.js';
 
 	const { data } = $props();
+	$inspect(data);
 
-	const sortedCollection = data.jokes
+	const jokeRanking = data.jokes
 		.filter((joke) => data.uniqueJokes.includes(joke.id))
 		.sort((a, b) => getLikes(b.id, data.collection) - getLikes(a.id, data.collection))
 		.map((joke, index) => ({
@@ -14,11 +15,11 @@
 		}));
 </script>
 
-<h1>Ma collection</h1>
+<h1>Classement</h1>
 
 <div class="container">
-	{#if sortedCollection.length !== 0}
-		{#each sortedCollection as joke}
+	{#if jokeRanking.length !== 0}
+		{#each jokeRanking as joke}
 			<div class="joke {joke.type}">
 				<div>#{joke.rank}</div>
 				<div><p>{joke.joke}</p></div>
