@@ -33,7 +33,7 @@
 			</div>
 			<div class="bottom__container">
 				{#if currentJoke.author}
-					<div class="author__container">Proposé par {currentJoke.author}</div>
+					<div class="author__container">Proposé par {currentJoke.author} !</div>
 				{/if}
 				<div class="like__container">
 					<img src={like} alt="coeur" />
