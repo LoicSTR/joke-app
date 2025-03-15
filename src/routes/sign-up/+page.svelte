@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import Button from '$lib/components/Button.svelte';
 
 	const { form } = $props();
 	$inspect(form);
@@ -7,7 +8,7 @@
 
 <h2>Inscription</h2>
 {#if form?.success}
-	{(window.location.href = '/')}
+	{(window.location.href = '/log-in')}
 {/if}
 
 <form action="?/register" method="POST" use:enhance>
@@ -31,5 +32,6 @@
 		Niveau humour
 		<input type="range" name="humourLevel" min="0" max="10" value="5" />
 	</label>
-	<button>S'inscrire</button>
+	<Button text="S'inscrire"></Button>
+	<p>Si vous avez déjà un compte, <a href="/log-in">connectez-vous</a></p>
 </form>

@@ -5,34 +5,33 @@
 	import { recentCollection } from '$lib/recentCollection.svelte.js';
 	import { createRandomNumber, getLikes } from '$lib/helpers';
 	import { invalidate } from '$app/navigation';
-	import { redirect } from '@sveltejs/kit';
 
 	const { data } = $props();
 	$inspect(data);
-	if (!data.user) throw redirect(302, '/log-in');
 
-	const typesUnique = [...new Set(data.jokes.map((joke) => joke.type))];
+	const typesUnique = ['global', 'dev', 'dark'];
 
 	let activeTypes = $state(
 		Object.fromEntries(typesUnique.map((type) => [type, type === 'global' || type === 'dev']))
 	);
 
-	const myCollection = data.collection[data.user?.userName];
-
 	function getFilteredJokes() {
-		return data.jokes.filter((joke) => activeTypes[joke.type]);
+		return Object.fromEntries(
+			Object.entries(data.jokes).filter(([key, joke]) => activeTypes[joke.type])
+		);
 	}
+	const filteredJokes = getFilteredJokes();
 
 	function getRandomJoke() {
-		const filteredJokes = getFilteredJokes();
-		if (filteredJokes.length === 0) return null;
-		const randomId = createRandomNumber(filteredJokes.length);
-		const joke = filteredJokes[randomId];
+		if (Object.keys(filteredJokes).length === 0) return null;
+		const jokesArray = Object.values(filteredJokes);
+		const randomId = createRandomNumber(jokesArray.length);
+		const joke = jokesArray[randomId];
 		return { ...joke, likes: 0 };
-		// return { ...joke, likes: getLikes(joke.id, myCollection) };
 	}
 
 	let currentJoke = $state(getRandomJoke());
+	$inspect(currentJoke);
 
 	function reloadJoke() {
 		currentJoke = getRandomJoke();
@@ -47,6 +46,8 @@
 
 {#if !data.user}
 	<p>Il est nécessaire de se connecter pour accéder au contenu du site</p>
+	<Button text="Se connecter" link="/log-in"></Button>
+	<Button text="S'inscrire" link="/sign-up"></Button>
 {:else}
 	<section class="types-container">
 		{#each typesUnique as type}
