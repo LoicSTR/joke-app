@@ -8,6 +8,8 @@ export async function addToCollection(id: number, user: string) {
 	if (!collection[user]) {
 		collection[user] = [];
 	}
-	collection[user].push(id);
-	return write('collection.json', collection);
+	if (!collection[user].includes(id)) {
+		collection[user].push(id);
+		return write('collection.json', collection);
+	}
 }

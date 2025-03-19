@@ -2,7 +2,9 @@ class RecentCollection {
 	ids: number[] = $state([]);
 
 	add = (id: number) => {
-		this.ids.push(id);
+		if (!this.ids.includes(id)) {
+			this.ids.push(id);
+		}
 	};
 }
 
