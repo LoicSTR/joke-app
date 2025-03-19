@@ -1,12 +1,12 @@
 <script lang="ts">
 	import like from '$lib/assets/like.svg';
+	import fill_like from '$lib/assets/fill_like.svg';
 	import { getLikes } from '$lib/helpers.js';
 
 	const { data } = $props();
-	$inspect(data);
 
 	const jokeRanking = data.jokes
-		.filter((joke) => data.uniqueJokes.includes(joke.id))
+		.filter((joke) => data.uniqueJokes?.includes(joke.id))
 		.sort((a, b) => getLikes(b.id, data.collection) - getLikes(a.id, data.collection))
 		.map((joke, index) => ({
 			...joke,
@@ -26,7 +26,10 @@
 				<div><p>{joke.answer}</p></div>
 				<div class="like">
 					<p>{joke.likes}</p>
-					<img src={like} alt="coeur" />
+					<img
+						src={data.myCollection && data.myCollection.includes(joke.id) ? fill_like : like}
+						alt="coeur"
+					/>
 				</div>
 			</div>
 		{/each}

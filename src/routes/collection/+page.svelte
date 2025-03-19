@@ -1,7 +1,7 @@
 <script lang="ts">
 	const { data } = $props();
 
-	const myFilteredCollection = data.jokes.filter((joke) => data.uniqueJokes.includes(joke.id));
+	let myFilteredCollection = data.jokes.filter((joke) => data.myCollection?.includes(joke.id));
 </script>
 
 <h1>Ma collection</h1>

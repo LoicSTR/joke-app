@@ -13,10 +13,10 @@ export async function load({ depends, cookies }) {
 	const userByName = await readUsers();
 
 	let myCollection;
-	let uniqueJokes;
+	const uniqueJokes = [...new Set(Object.values(collection).flat())];
+
 	if (name) {
 		myCollection = collection[name];
-		uniqueJokes = [...new Set(myCollection)];
 	}
 
 	return {

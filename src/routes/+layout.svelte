@@ -2,6 +2,7 @@
 	import { page } from '$app/stores';
 	import house from '$lib/assets/house.svg';
 	const { children, data } = $props();
+	$inspect(data);
 
 	const current = $derived($page.url.pathname);
 
@@ -9,7 +10,7 @@
 
 	$effect(() => {
 		nbInMyCollection =
-			data.uniqueJokes && data.uniqueJokes?.length > 0 ? `(${data.uniqueJokes.length})` : '';
+			data.myCollection && data.myCollection?.length > 0 ? `(${data.myCollection.length})` : '';
 	});
 </script>
 
@@ -36,7 +37,7 @@
 	</nav>
 	{#if data.user}
 		<div>
-			<p>-- {data.user.name}</p>
+			<p>{data.user.name} - <a href="/log-out">Déconnexion</a></p>
 		</div>
 	{/if}
 </header>
@@ -53,9 +54,10 @@
 		top: 0;
 		left: 50%;
 		transform: translateX(-50%);
+		width: 80%;
 		display: flex;
 		align-items: center;
-		justify-content: center;
+		justify-content: space-between;
 		padding: 0.5rem;
 		border-bottom: 1px solid #fff;
 	}

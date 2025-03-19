@@ -198,6 +198,10 @@ button:hover {
 	color: white;
 }
 
+a {
+	color: inherit;
+}
+
 #app {
 	display: flex;
 	height: 100vh;
