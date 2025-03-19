@@ -31,7 +31,6 @@
 	}
 
 	let currentJoke = $state(getRandomJoke());
-	$inspect(currentJoke);
 
 	function reloadJoke() {
 		currentJoke = getRandomJoke();
@@ -39,8 +38,8 @@
 
 	async function addToCollection(id: number) {
 		await fetch('/api/collection', { method: 'POST', body: JSON.stringify({ id }) });
-		invalidate('collection:all');
 		recentCollection.add(id);
+		invalidate('collection:all');
 	}
 </script>
 
