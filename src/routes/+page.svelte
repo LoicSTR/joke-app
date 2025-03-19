@@ -27,7 +27,8 @@
 		const jokesArray = Object.values(filteredJokes);
 		const randomId = createRandomNumber(jokesArray.length);
 		const joke = jokesArray[randomId];
-		return { ...joke, likes: 0 };
+		const nbLikes = getLikes(joke.id, data.collection) ?? 0;
+		return { ...joke, likes: nbLikes };
 	}
 
 	let currentJoke = $state(getRandomJoke());
@@ -54,7 +55,7 @@
 		{/each}
 	</section>
 	<section>
-		<Joke {currentJoke} {addToCollection} {reloadJoke} />
+		<Joke {currentJoke} {addToCollection} {reloadJoke} myCollection={data.myCollection} />
 	</section>
 	<section>
 		<Button text="Ajouter une blague" link="/form"></Button>
