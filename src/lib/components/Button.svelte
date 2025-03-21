@@ -21,7 +21,7 @@
 
 <style>
 	button {
-		margin-top: 3rem;
+		margin-top: 2rem;
 		padding: 0.5rem 1rem;
 		border-radius: 0.5rem;
 		color: #fff;
