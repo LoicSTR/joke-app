@@ -2,11 +2,11 @@
 	import { page } from '$app/stores';
 	import house from '$lib/assets/house.svg';
 	const { children, data } = $props();
-	$inspect(data);
 	const current = $derived($page.url.pathname);
 
 	const nbInMyCollection =
 		data.uniqueJokes && data.uniqueJokes.length > 0 ? '(' + data.uniqueJokes.length + ')' : '';
+	$inspect(nbInMyCollection);
 </script>
 
 <header>

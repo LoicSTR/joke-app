@@ -8,6 +8,7 @@
 
 	const { data } = $props();
 	$inspect(data);
+	const myCollection = $derived(data.myCollection);
 
 	const typesUnique = ['global', 'dev', 'dark'];
 
@@ -38,6 +39,7 @@
 	}
 
 	async function addToCollection(id: number) {
+		console.log('test');
 		await fetch('/api/collection', { method: 'POST', body: JSON.stringify({ id }) });
 		invalidate('collection:all');
 		recentCollection.add(id);
@@ -55,7 +57,7 @@
 		{/each}
 	</section>
 	<section>
-		<Joke {currentJoke} {addToCollection} {reloadJoke} />
+		<Joke {currentJoke} {myCollection} {addToCollection} {reloadJoke} />
 	</section>
 	<section>
 		<Button text="Ajouter une blague" link="/form"></Button>

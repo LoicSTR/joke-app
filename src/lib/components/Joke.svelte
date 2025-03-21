@@ -8,11 +8,13 @@
 			likes: number;
 			author?: string;
 		} | null;
+		myCollection: number[] | undefined;
 		addToCollection: (id: number) => void;
 		reloadJoke: () => void;
 	};
-	const { currentJoke, addToCollection, reloadJoke }: JokeProps = $props();
+	const { currentJoke, myCollection, addToCollection, reloadJoke }: JokeProps = $props();
 
+	import likeFill from '$lib/assets/like_fill.svg';
 	import like from '$lib/assets/like.svg';
 	import eye from '$lib/assets/eye.svg';
 	import BadButton from './BadButton.svelte';
@@ -36,7 +38,10 @@
 					<div class="author__container">Proposé par {currentJoke.author} !</div>
 				{/if}
 				<div class="like__container">
-					<img src={like} alt="coeur" />
+					<img
+						src={myCollection && myCollection.find((id) => id === currentJoke.id) ? likeFill : like}
+						alt="coeur"
+					/>
 					<span>{currentJoke.likes}</span>
 				</div>
 			</div>

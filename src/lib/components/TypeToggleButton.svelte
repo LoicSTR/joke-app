@@ -1,6 +1,4 @@
 <script lang="ts">
-	// export type TypeName = 'dev' | 'blondes' | 'dark' | 'beauf' | 'limit' | 'global';
-
 	type TypeToggleButtonProps = {
 		isOn: boolean;
 		typeName: string;
@@ -9,10 +7,7 @@
 
 	const typeDictionnary: Record<string, string> = {
 		dev: 'Geek',
-		blondes: 'Blondes',
 		dark: 'Sombre',
-		beauf: 'Beauf',
-		limit: 'Limite',
 		global: 'Basique'
 	};
 </script>
