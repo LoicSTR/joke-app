@@ -1,6 +1,4 @@
 <script lang="ts">
-	// export type TypeName = 'dev' | 'blondes' | 'dark' | 'beauf' | 'limit' | 'global';
-
 	type TypeToggleButtonProps = {
 		isOn: boolean;
 		typeName: string;
