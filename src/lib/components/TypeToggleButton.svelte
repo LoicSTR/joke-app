@@ -9,10 +9,10 @@
 
 	const typeDictionnary: Record<string, string> = {
 		dev: 'Geek',
-		blondes: 'Blondes',
+		// blondes: 'Blondes',
 		dark: 'Sombre',
-		beauf: 'Beauf',
-		limit: 'Limite',
+		// beauf: 'Beauf',
+		// limit: 'Limite',
 		global: 'Basique'
 	};
 </script>
