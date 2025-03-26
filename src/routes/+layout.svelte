@@ -84,4 +84,8 @@
 	nav a.current {
 		text-decoration: none;
 	}
+
+	footer {
+		padding: 1rem;
+	}
 </style>

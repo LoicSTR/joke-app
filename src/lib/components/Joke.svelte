@@ -57,7 +57,7 @@
 		display: flex;
 		align-items: center;
 		gap: 5rem;
-		margin-top: 5rem;
+		margin-top: 2rem;
 	}
 	.answer__container {
 		position: relative;
