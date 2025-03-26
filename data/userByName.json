@@ -1,1 +1,10 @@
-{"loicstr":{"name":"Loïc","userName":"loicstr","password":"loicpassword","humourLevel":"9"},"test2":{"name":"Test2","userName":"test2","password":"toto","humourLevel":"5"},"loicStr":{"name":"Loïc","userName":"loicStr","password":"toto","humourLevel":"10"}}
+{
+	"loicstr": {
+		"name": "Loïc",
+		"userName": "loicstr",
+		"password": "loicpassword",
+		"humourLevel": "9"
+	},
+	"test2": { "name": "Test2", "userName": "test2", "password": "toto", "humourLevel": "5" },
+	"loicStr": { "name": "Loïc", "userName": "loicStr", "password": "toto", "humourLevel": "10" }
+}

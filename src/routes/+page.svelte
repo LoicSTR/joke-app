@@ -9,7 +9,12 @@
 	const { data } = $props();
 	$inspect(data);
 
-	const typesUnique = ['global', 'dev', 'dark'];
+	// const typesUnique = ['global', 'dev', 'dark'];
+
+	const typesUnique = (jokes: any[]) => {
+		return [...new Set(jokes.map((joke) => joke.type))];
+	};
+	$inspect(typesUnique(data.jokes));
 
 	let activeTypes = $state(
 		Object.fromEntries(typesUnique.map((type) => [type, type === 'global' || type === 'dev']))

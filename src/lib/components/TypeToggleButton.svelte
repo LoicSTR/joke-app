@@ -1,18 +1,13 @@
 <script lang="ts">
-	// export type TypeName = 'dev' | 'blondes' | 'dark' | 'beauf' | 'limit' | 'global';
-
 	type TypeToggleButtonProps = {
 		isOn: boolean;
 		typeName: string;
 	};
 	let { isOn = $bindable(), typeName }: TypeToggleButtonProps = $props();
 
-	const typeDictionnary: Record<string, string> = {
+	export const typeDictionnary: Record<string, string> = {
 		dev: 'Geek',
-		// blondes: 'Blondes',
 		dark: 'Sombre',
-		// beauf: 'Beauf',
-		// limit: 'Limite',
 		global: 'Basique'
 	};
 </script>
