@@ -1,10 +1,1 @@
-{
-	"loicstr": {
-		"name": "Loïc",
-		"userName": "loicstr",
-		"password": "loicpassword",
-		"humourLevel": "9"
-	},
-	"test2": { "name": "Test2", "userName": "test2", "password": "toto", "humourLevel": "5" },
-	"loicStr": { "name": "Loïc", "userName": "loicStr", "password": "toto", "humourLevel": "10" }
-}
+{"yves":{"name":"Yves","userName":"yves","password":"yvespassword","humourLevel":6},"nico33":{"name":"Nicolas","userName":"nico33","password":"nicopassword","humourLevel":7},"loicStr":{"name":"Loïc","userName":"loicStr","password":"loicpassword","humourLevel":8}}

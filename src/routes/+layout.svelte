@@ -9,7 +9,7 @@
 
 	$effect(() => {
 		nbInMyCollection =
-			data.myCollection && data.myCollection?.length > 0 ? `(${data.myCollection.length})` : '';
+			data.myCollection && data.myCollection?.length > 0 ? `(${data.myCollection.length})` : '(0)';
 	});
 </script>
 
@@ -27,18 +27,22 @@
 			<li>
 				<a href="/statistiques" class:current={current === '/statistiques'}>Statistiques </a>
 			</li>
-			<li>
-				<a href="/collection" class:current={current === '/collection'}
-					>Ma collection {nbInMyCollection}</a
-				>
-			</li>
+			{#if data.user}
+				<li>
+					<a href="/collection" class:current={current === '/collection'}
+						>Ma collection {nbInMyCollection}</a
+					>
+				</li>
+			{/if}
 		</ul>
 	</nav>
-	{#if data.user}
-		<div>
+	<div>
+		{#if data.user}
 			<p>{data.user.name} - <a href="/log-out">Déconnexion</a></p>
-		</div>
-	{/if}
+		{:else}
+			<p><a href="/log-in">Connexion</a></p>
+		{/if}
+	</div>
 </header>
 <main>
 	{@render children()}

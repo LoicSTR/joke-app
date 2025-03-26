@@ -1,6 +1,6 @@
-import jokes from '../../../data/jokes.json';
-import collection from '../../../data/collection.json';
+import { readCollection } from '$lib/server/db/collection';
 
-export function load() {
-	return { jokes, collection };
+export async function load() {
+	const collection = await readCollection();
+	return { collection };
 }

@@ -42,7 +42,7 @@ export const actions = {
 				humourLevel,
 				field: 'confirmPassword_register'
 			});
-		if (humourLevel > 5)
+		if (humourLevel < 5)
 			return fail(400, {
 				message: "Vous n'avez pas assez d'humour pour vous inscrire",
 				name,

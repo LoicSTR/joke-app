@@ -5,7 +5,9 @@
 
 	const { data } = $props();
 
-	const jokeRanking = data.jokes
+	const jokes = Object.values(data.jokes);
+
+	const jokeRanking = jokes
 		.filter((joke) => data.uniqueJokes?.includes(joke.id))
 		.sort((a, b) => getLikes(b.id, data.collection) - getLikes(a.id, data.collection))
 		.map((joke, index) => ({

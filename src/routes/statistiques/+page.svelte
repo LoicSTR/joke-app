@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { getLikes } from '$lib/helpers.js';
-	import type { Joke } from '$lib/types/joke.ts';
+	import { typeDictionnary } from '$lib/dictionnary/typesDictionnay';
 	const { data } = $props();
 
 	const collection = Object.entries(data.collection);
 	const users = Object.entries(data.users);
-	const jokes: Joke[] = Object.values(data.jokes);
+	const jokes = Object.values(data.jokes);
 
 	let nbLikes = $state(0);
 	let maxLength = 0;
@@ -47,12 +47,6 @@
 
 	const typeCount = countTypes(jokesInCollection);
 	const myTypeCount = countTypes(myFilteredCollection);
-
-	const typeDictionnary: Record<string, string> = {
-		dev: 'Geek',
-		dark: 'Sombre',
-		global: 'Basique'
-	};
 
 	const getMostLikedType = (countObj: Record<string, number>) =>
 		typeDictionnary[Object.entries(countObj).sort((a, b) => b[1] - a[1])[0][0]];
