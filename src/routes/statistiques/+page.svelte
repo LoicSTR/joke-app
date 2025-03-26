@@ -67,21 +67,21 @@
 	<div>
 		<h2>Statistiques globales</h2>
 		<h3>Blagues</h3>
-		<div>Nombre de blagues likées : {data.uniqueJokes.length}</div>
-		<div>Nombre total de likes : {nbLikes}</div>
-		<div>Nombre de blagues ajoutées : {jokesAdded.length}</div>
-		<div>
-			Type de blague le plus liké : {mostLikedType}
-		</div>
+		<p>Nombre de blagues likées : <span>{data.uniqueJokes.length}</span></p>
+		<p>Nombre total de likes : <span>{nbLikes}</span></p>
+		<p>Nombre de blagues ajoutées : <span>{jokesAdded.length}</span></p>
+		<p>
+			Type de blague le plus liké : <span>{mostLikedType}</span>
+		</p>
 		<h3>Utilisateurs</h3>
-		<div>Nombre d'utilisateurs : {users.length}</div>
-		<div>Plus gros blagueurs : {name}</div>
+		<p>Nombre d'utilisateurs : <span>{users.length}</span></p>
+		<p>Plus gros blagueurs : <span>{name}</span></p>
 	</div>
 	<div>
 		<h2>Mes statistiques</h2>
-		<div>Nombre de blagues likées : {data.myCollection?.length ?? 0}</div>
-		<div>Nombre de blagues ajoutées : {jokesAddedByMe.length}</div>
-		<div>Type de blague le plus liké : {myMostLikedType}</div>
+		<p>Nombre de blagues likées : <span>{data.myCollection?.length ?? 0}</span></p>
+		<p>Nombre de blagues ajoutées : <span>{jokesAddedByMe.length}</span></p>
+		<p>Type de blague le plus liké : <span>{myMostLikedType}</span></p>
 	</div>
 </section>
 
@@ -92,7 +92,26 @@
 	}
 
 	section > div {
-		padding: 1rem;
+		padding: 2rem;
 		border: solid 1px #fff;
+		border-radius: 1rem;
+	}
+
+	h2 {
+		font-weight: 700;
+		margin-bottom: 1rem;
+	}
+	h3 {
+		font-weight: 600;
+		margin-top: 0.5rem;
+		margin-bottom: 0.25rem;
+	}
+	p {
+		line-height: 1.5rem;
+	}
+	span {
+		font-weight: 500;
+		font-size: 1.25rem;
+		color: #fff;
 	}
 </style>
