@@ -5,12 +5,9 @@
 	};
 	let { isOn = $bindable(), typeName }: TypeToggleButtonProps = $props();
 
-	const typeDictionnary: Record<string, string> = {
+	export const typeDictionnary: Record<string, string> = {
 		dev: 'Geek',
-		blondes: 'Blondes',
 		dark: 'Sombre',
-		beauf: 'Beauf',
-		limit: 'Limite',
 		global: 'Basique'
 	};
 </script>

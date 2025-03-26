@@ -4,6 +4,7 @@
 	import { getLikes } from '$lib/helpers.js';
 
 	const { data } = $props();
+	$inspect(data);
 
 	const jokeRanking = data.jokes
 		.filter((joke) => data.uniqueJokes?.includes(joke.id))
