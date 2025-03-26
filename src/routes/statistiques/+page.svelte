@@ -1,34 +1,47 @@
 <script lang="ts">
 	const { data } = $props();
-	$inspect(data.jokes);
+	$inspect(data.collection);
+
+	const collection = Object.entries(data.collection);
+
+	let nbLikes = $state(0);
+	let maxLength = 0;
+	let index = $state(0);
+	let name = $state('');
+
+	collection.forEach(([n, likes], i) => {
+		nbLikes += likes.length;
+		if (likes.length > maxLength) {
+			maxLength = likes.length;
+			index = i;
+			name = n;
+		}
+	});
 </script>
 
 <h1>Statistiques</h1>
 
-<section class="stats">
+<section>
 	<div>
-		<h2>Stats des blagues</h2>
-		<p>Nombre de blagues likés : {Object.keys(data.uniqueJokes).length}</p>
-		{#each data.jokes as joke}
-			<p>{joke.joke}</p>
-		{/each}
+		<h2>Statistiques des blagues</h2>
+		<div>Nombre de blagues likées : {data.uniqueJokes.length}</div>
+		<div>Nombre total de likes : {nbLikes}</div>
+		<div>Type de blague le plus liké :</div>
 	</div>
-
 	<div>
-		<h2>Stats des users</h2>
+		<h2>Statistiques des utilisateurs</h2>
+		<div>Plus gros blagueurs : {name}</div>
 	</div>
 </section>
 
 <style>
-	.stats {
-		width: 80%;
+	section {
 		display: flex;
-		gap: 1rem;
+		gap: 2rem;
 	}
-	.stats > div {
-		flex: 1;
-	}
-	h2 {
-		text-align: center;
+
+	section > div {
+		padding: 1rem;
+		border: solid 1px #fff;
 	}
 </style>
