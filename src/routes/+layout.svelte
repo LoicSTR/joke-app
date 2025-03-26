@@ -24,10 +24,10 @@
 			<li>
 				<a href="/classement" class:current={current === '/classement'}>Classement</a>
 			</li>
-			<li>
-				<a href="/statistiques" class:current={current === '/statistiques'}>Statistiques </a>
-			</li>
 			{#if data.user}
+				<li>
+					<a href="/statistiques" class:current={current === '/statistiques'}>Statistiques </a>
+				</li>
 				<li>
 					<a href="/collection" class:current={current === '/collection'}
 						>Ma collection {nbInMyCollection}</a
