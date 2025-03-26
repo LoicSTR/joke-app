@@ -17,9 +17,6 @@ export async function addUser(user: User) {
 	if (user.name in users) {
 		throw new Error("Ce nom d'utilisateur existe déjà");
 	}
-	if (user.humourLevel < 5) {
-		throw new Error("Vous manquez d'humour pour vous inscrire");
-	}
 	return write('userByName.json', {
 		[user.userName]: user,
 		...users

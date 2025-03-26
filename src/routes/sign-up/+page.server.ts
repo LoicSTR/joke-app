@@ -8,7 +8,7 @@ export const actions = {
 		const userName = data.get('userName_register')?.toString();
 		const password = data.get('password_register')?.toString();
 		const confirmPassword = data.get('confirmPassword_register')?.toString();
-		const humourLevel = data.get('humourLevel')?.toString();
+		const humourLevel = Number(data.get('humourLevel'));
 
 		if (!name)
 			return fail(400, {
@@ -41,6 +41,14 @@ export const actions = {
 				userName,
 				humourLevel,
 				field: 'confirmPassword_register'
+			});
+		if (humourLevel > 5)
+			return fail(400, {
+				message: "Vous n'avez pas assez d'humour pour vous inscrire",
+				name,
+				userName,
+				humourLevel,
+				field: 'humourLevel'
 			});
 		try {
 			await addUser({ name, userName, password, humourLevel });
