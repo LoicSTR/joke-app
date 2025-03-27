@@ -41,7 +41,7 @@
 		{/if}
 	</label>
 	<label class:error={form?.field === 'humourLevel'}>
-		Niveau humour
+		Niveau d'humour
 		<input type="range" name="humourLevel" min="0" max="10" value="5" />
 		{#if form?.message && form?.field === 'humourLevel'}
 			<p class="error-message">{form.message}</p>
